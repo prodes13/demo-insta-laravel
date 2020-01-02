@@ -8,13 +8,14 @@ use Illuminate\Http\Request;
 class ProfilesController extends Controller
 {
     //
-    public function index($user)
+    public function index(User $user)
     {
-        // if user doesn't exits, return 404, and not error!
-        $user = User::findOrFail($user);
-        
-        return view('home', [
+        return view('profiles.index', [
         	'user' => $user,
         ]);
+    }
+    public function edit(User $user)
+    {       
+        return view('profiles.edit', compact('user'));
     }
 }

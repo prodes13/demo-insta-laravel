@@ -45,12 +45,19 @@ class User extends Authenticatable
             $user->profile()->create([
                 'title' => $user->username,
             ]);
+
+            
         });
     }
 
     public function posts() 
     {
         return $this->hasMany(Post::Class)->orderBy('created_at', 'DESC');
+    }
+
+    public function following()
+    {
+        return $this->belongsToMany(Profile::class);
     }
 
     public function profile() 
